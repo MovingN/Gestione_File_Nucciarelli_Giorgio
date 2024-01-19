@@ -1,6 +1,5 @@
 package gestionefile;
 import java.util.Scanner;
-import java.nio.channels.*;
 import java.io.*;
 
 /**
@@ -24,13 +23,12 @@ public class GestioneFile {
         System.out.println("Crei una password");
         String passkey = m.nextLine();
         lettore.start();
-        //2)ELABORAZIONE
         
         //3) SCRITTURA
-        Scrittore scrittore = new Scrittore("output.csv");
+        Scrittore scrittore = new Scrittore("output.csv",username,passkey);
         Thread threadScrittore = new Thread(scrittore);
         threadScrittore.start();
-        scrittore.run(username + ";" + passkey);
+        scrittore.scriviPsw();
         FileInputStream inputStream = new FileInputStream(inFile);
         FileOutputStream outputStream = new FileOutputStream(outFile);
         byte[] buffer = new byte[1024];
