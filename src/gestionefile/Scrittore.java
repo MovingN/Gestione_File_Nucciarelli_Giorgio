@@ -49,9 +49,10 @@ public class Scrittore implements Runnable{
         }
     }
     public void scriviPsw(){
-        BufferedWriter br=null;
         
-        try (br = new BufferedWriter(
+        
+        try ( BufferedWriter br=null;
+            br = new BufferedWriter(
                     new FileWriter(nomeFile))){
             //2) scrivo nel buffer
             br.write(user + ";" + psw);
