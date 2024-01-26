@@ -4,7 +4,7 @@ import java.io.*;
 
 /**
  *
- * @author MC
+ * @author Giorgio Nucciarelli
  * @version 12/01/23
  */
 public class GestioneFile {

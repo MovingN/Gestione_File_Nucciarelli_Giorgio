@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author MC
+ * @author Giorgio Nucciarelli
  * @version 12/01/23
  */
 
@@ -34,9 +34,8 @@ public class Scrittore implements Runnable{
      */
     public void scrivi(){
         
-        try ( BufferedWriter br=null;
-             br = new BufferedWriter(
-                    new FileWriter(nomeFile))){
+        try ( BufferedWriter br=null; BufferedWriter br = new BufferedWriter(
+                new FileWriter(nomeFile))){
             //1) apro il file
             //2) scrivo nel buffer
             br.write("File in output");
@@ -47,8 +46,7 @@ public class Scrittore implements Runnable{
             Logger.getLogger(Scrittore.class.getName()).log(Level.SEVERE, null, ex);
         }       
         }
-    }
-    public void scriviPsw(){
+      public void scriviPsw(){
         
         
         try ( BufferedWriter br=null;
@@ -64,4 +62,7 @@ public class Scrittore implements Runnable{
         }
         }
     }
-}
+
+
+
+  

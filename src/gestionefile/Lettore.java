@@ -5,7 +5,7 @@ import java.io.IOException;
 
 /**
  *
- * @author MC
+ * @author Giorgio Nucciarelli
  * @ 12/01/23
  */
 
@@ -21,7 +21,6 @@ public class Lettore extends Thread{
      * e lo mostra in output
      */
     public void leggi(){
-        FileReader fr;
         int i; 
         try (FileReader fr = new FileReader(nomeFile)){ 
             //1) apro il file
