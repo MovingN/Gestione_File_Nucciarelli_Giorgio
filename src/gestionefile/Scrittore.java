@@ -1,5 +1,5 @@
 package gestionefile;
-
+import java.io.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -46,12 +46,11 @@ public class Scrittore implements Runnable{
             Logger.getLogger(Scrittore.class.getName()).log(Level.SEVERE, null, ex);
         }       
         }
-      public void scriviPsw(){
+      public void scriviPsw(String user, String psw){
         
         
-        try ( BufferedWriter br=null;
-            br = new BufferedWriter(
-                    new FileWriter(nomeFile))){
+        try ( BufferedWriter br=null; BufferedWriter br = new BufferedWriter(
+                new FileWriter(nomeFile))){
             //2) scrivo nel buffer
             br.write(user + ";" + psw);
             br.write("\n\r");

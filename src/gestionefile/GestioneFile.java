@@ -29,15 +29,31 @@ public class GestioneFile {
         Thread threadScrittore = new Thread(scrittore);
         threadScrittore.start();
         scrittore.scriviPsw();
-        FileInputStream inputStream = new FileInputStream(inFile);
-        FileOutputStream outputStream = new FileOutputStream(outFile);
-        byte[] buffer = new byte[1024];
+         try (BufferedInputStream in =
+              new BufferedInputStream(
+                 new FileInputStream(inFile))) //legge {
+            int b; 
+                 while ((b=in.read()) != -1)
+                System.out.print(b);//Sistemare e fare la conversione da int a string
+            
+            System.out.print("\n\r");
+        } catch (IOException ex) {
+            System.err.println("Errore in lettura!");
+        }
+       try (DataOutputStream out =
+              new DataOutputStream(
+                 new BufferedOutputStream(
+                    new FileOutputStream(outFile)))) {
+        byte[] buffer = new byte[1024];//Da sistemare
         int bytesLetti;
         while ((bytesLetti = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, bytesLetti);
         }
         inputStream.close();
         outputStream.close();
+         } catch (IOException ex) {
+         ex.printStackTrace();
+      }
     }
     
 }

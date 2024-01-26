@@ -1,5 +1,5 @@
 package gestionefile;
-
+import java.io.*;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -22,11 +22,15 @@ public class Lettore extends Thread{
      */
     public void leggi(){
         int i; 
-        try (FileReader fr = new FileReader(nomeFile)){ 
+        
             //1) apro il file
             //2) leggo carattere per carattere e lo stampo 
-            while ((i=fr.read()) != -1)
-                System.out.print((char) i);
+             try (BufferedInputStream in =
+              new BufferedInputStream(
+                 new FileInputStream(nomeFile))) {
+            int b; 
+                 while ((b=in.read()) != -1)
+                System.out.print(b);//Sistemare e fare la conversione da int a string
             
             System.out.print("\n\r");
         } catch (IOException ex) {
@@ -35,6 +39,7 @@ public class Lettore extends Thread{
     }
     
 
+    @Override
     public void run(){
         leggi();
     }
