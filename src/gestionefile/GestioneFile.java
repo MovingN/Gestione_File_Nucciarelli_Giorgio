@@ -5,12 +5,14 @@ import java.io.*;
 /**
  *
  * @author Giorgio Nucciarelli
- * @version 12/01/23
+ * @version 01/02/24
  */
 public class GestioneFile {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.IOException
+     * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws IOException, FileNotFoundException {
         Scanner m = new Scanner(System.in); 
@@ -28,32 +30,31 @@ public class GestioneFile {
         Scrittore scrittore = new Scrittore("output.csv",username,passkey);
         Thread threadScrittore = new Thread(scrittore);
         threadScrittore.start();
-        scrittore.scriviPsw();
-         try (BufferedInputStream in =
-              new BufferedInputStream(
-                 new FileInputStream(inFile))) //legge {
-            int b; 
-                 while ((b=in.read()) != -1)
-                System.out.print(b);//Sistemare e fare la conversione da int a string
-            
-            System.out.print("\n\r");
-        } catch (IOException ex) {
-            System.err.println("Errore in lettura!");
+        
+        scrittore.scriviPsw(username, passkey);
+         try ( DataInputStream in = new
+            BufferedInputStream(new FileInputStream(inFile))) { //legge 
+            while(true){
+                String b;
+                b=in.readUTF();
+                System.out.print(b);
+                System.out.print("\n\r");
+         }
+         }catch (EOFException  ex) {
+            System.err.println("Errore in!");
         }
        try (DataOutputStream out =
               new DataOutputStream(
                  new BufferedOutputStream(
                     new FileOutputStream(outFile)))) {
-        byte[] buffer = new byte[1024];//Da sistemare
-        int bytesLetti;
-        while ((bytesLetti = inputStream.read(buffer)) != -1) {
-            outputStream.write(buffer, 0, bytesLetti);
+           // non so come fare copiare il file utilizzando il dataOutputStream
+           out.flush();
         }
-        inputStream.close();
-        outputStream.close();
-         } catch (IOException ex) {
-         ex.printStackTrace();
-      }
+          catch (EOFException  e) {
+            System.err.println("Errore out!");
+        }
     }
-    
 }
+    
+    
+
