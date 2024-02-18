@@ -17,9 +17,9 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
 
-    String file;
-    String name;
-    String pass;
+    private String file;
+    private String name;
+    private String pass;
 
     public User(String file, String name, String pass) {
         this.file = file;

@@ -20,7 +20,7 @@ public class Scrittore implements Runnable {
         this.nomeFile = nomeFile;
     }
 
-    public Scrittore(String nomeFile, String us, String psw) {
+    public Scrittore(String nomeFile, String user, String psw) {
         this.nomeFile = nomeFile;
         this.user = user;
         this.psw = psw;
