@@ -19,7 +19,6 @@ public class GestioneFile {
         Scanner m = new Scanner(System.in);
         File inFile = new File("output.csv");
         File outFile = new File("copia.csv");
-        File use = new File("user.ser");
         //1)LETTURA
         Lettore lettore = new Lettore("user.json");
         System.out.println("Scelga il suo username");
@@ -43,11 +42,11 @@ public class GestioneFile {
         } catch (EOFException e) {
             System.err.println("Errore in copia del file!");
         }
-        
+
         // Punto 4 Serializzazione
-        User user= new User ("user.ser",username, passkey);
+        User user = new User("user.ser", username, passkey);
         user.serializzazione();
         user.deserializzazione();
-        
+
     }
 }

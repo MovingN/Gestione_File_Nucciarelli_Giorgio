@@ -2,10 +2,8 @@ package gestionefile;
 
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 /**
  *
@@ -38,10 +36,7 @@ public class Scrittore implements Runnable {
      */
     public void scrivi() {
 
-        try (DataOutputStream out
-                = new DataOutputStream(
-                        new BufferedOutputStream(
-                                new FileOutputStream(nomeFile)))) {//1) apro il file
+        try (DataOutputStream out = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(nomeFile)))) {//1) apro il file
 
             //2) scrivo nel buffer
             out.writeUTF("File in output");

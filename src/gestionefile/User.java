@@ -4,7 +4,6 @@
  */
 package gestionefile;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -31,15 +30,15 @@ public class User implements Serializable {
     public void serializzazione() throws IOException {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file))) {
             out.writeObject(name + ";" + pass);
-            System.out.println("Serializzazione="+out);
+            System.out.println("Serializzazione=" + out);
         }
     }
 
     public void deserializzazione() throws IOException {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
             try {
-            Object userDeserializzato =  in.readObject();
-                System.out.println("Deserializzazione="+userDeserializzato);
+                Object userDeserializzato = in.readObject();
+                System.out.println("Deserializzazione=" + userDeserializzato);
             } catch (ClassNotFoundException ex) {
                 System.err.println("Problema nella deserializzazione");
             }
